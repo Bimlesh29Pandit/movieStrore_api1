@@ -7,3 +7,94 @@
 
 --> login
     => we will check the email and passwork provided by the user
+
+
+==> as an id card ==> token
+==> we create a token while loggin in.
+==> we verified the token in the middleware
+
+
+--> current issue.
+==> Token is not dynamic it's hardcoded
+==> if someone came to know that token is 123 it will be Problem
+
+--> solution is--> we should have which create a new token at every login.
+==> jwt (json web token)
+
+
+Overview
+The lecture focused on authentication and authorization fundamentals in backend development, introducing concepts
+ like JWT (JSON Web Tokens) and role-based access control (RBAC). Practical examples and implementation details 
+ were provided to help students grasp these critical backend concepts effectively.
+
+Authentication and JWT
+Authentication is the process of verifying a user's identity, typically using login credentials. It ensures that 
+the user is who they claim to be.
+
+Example: Using biometric data for employee verification.
+JWT plays a crucial role in both authentication and authorization processes. It consists of three parts: header,
+ payload, and signature, which collectively ensure secure transmission of information.
+
+Example of JWT Creation and Verification:
+Creation: JWTs are created using a secret key and can include user details as the payload.
+Verification: JWTs are verified using the secret key to ensure data integrity and authenticity.
+Authorization and Role-Based Access Control (RBAC)
+Authorization determines what resources a user can access after being authenticated, often using tokens like JWT.
+
+Example: A user with a student role has different access permissions compared to a user with a principal role.
+Implementing RBAC involves defining roles and permissions associated with these roles to control access to 
+resources.
+
+Example: Creating middleware to check user roles (student or principal) before allowing access to specific endpoints.
+Practical Implementation
+Demonstrated the initialization of a backend project with NPM and the setup of a basic server using Express.
+Showed how to implement user registration and login functionality, including secure password handling and the 
+generation and verification of JWTs for authenticating users.
+Introduced role-based access control by differentiating access levels between students and principals, 
+showcasing how middleware can manage access permissions based on user roles.
+
+Conclusion
+The session covered the essentials of authentication and authorization, emphasizing the importance of JWT 
+in securing backend applications and implementing role-based access control to manage resource access efficiently.
+
+
+
+Authentication (Bcrypt and JWT)-2
+The lecture focused on enhancing security measures in web applications, particularly through authentication 
+improvements. Key topics discussed were dynamic keys, password encryption, the significance of not exposing user 
+passwords to developers, and the concept and implementation of hashing as compared to encryption.
+
+Practice and Optimization
+The discussion started with reviewing the previous session's work and identifying areas for improvement, 
+especially around security and optimization.
+
+Dynamic Keys and Security
+It was clarified that security keys should be placed in environment variables rather than being dynamic, 
+ensuring even developers cannot access sensitive user information such as passwords.
+
+Hashing vs. Encryption
+A deep dive into the differences between hashing and encryption, highlighting that encryption is reversible with 
+a key, whereas hashing is a one-way process, making it impossible to retrieve the original input from the hash.
+Implementing Hashing with B-Crypt
+
+Introduction to B-Crypt for password hashing, including its installation and usage to transform passwords into 
+unreadable hashes before storing them in databases, ensuring even if there's a data breach, passwords remain 
+secured.
+
+Using B-Crypt in Application
+
+Demonstrated how B-Crypt is implemented in a registration and login flow, including how passwords are hashed 
+upon registration and how hashes are compared during login without ever decrypting them, thus maintaining the 
+integrity of user privacy.
+
+Significance of Salt and Hash Rounds
+
+Explained the concept of salts and salt rounds in B-Crypt to further secure passwords by adding randomness and 
+complexity, making it computationally harder for attackers to crack passwords through brute force methods.
+Refreshing Tokens for Session Management
+
+Discussed strategies for managing user sessions securely through JWTs, including using a refresh token system to allow users to remain logged in securely without compromising system security.
+Security Through Blacklisting Tokens
+
+Introduced a method to immediately invalidate tokens by blacklisting, which enhances security by offering a way to forcefully log out users or prevent misuse of tokens that may have been compromised.
+This lecture provided comprehensive insights into enhancing the security of web applications through effective authentication strategies, notably through the use of B-Crypt for hashing and JWT for managing user sessions.
