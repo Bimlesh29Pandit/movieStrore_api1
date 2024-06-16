@@ -1,0 +1,9 @@
+--> authenticate a user(befor login);
+
+--> user will first register himself( schema, model)
+--> (model to store this information and it's schema)
+
+--> we need  to create an api for register and login
+
+--> login
+    => we will check the email and passwork provided by the user
