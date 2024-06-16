@@ -6,7 +6,11 @@ const auth = (req, res, next) => {
   // } else {
   //   res.send("Please login first");
   // }
-  var token = req.query.token;
+  // var token = req.query.token;
+
+  // key --> Authorization  && value --> bearer {token}--> this how we pass the value in headers
+  var token = req.headers.authorization.split(" ")[1];
+  console.log(token);
   jwt.verify(token, "self", (error, decode) => {
     if (error) {
       console.log(error);
