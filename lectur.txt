@@ -91,10 +91,14 @@ Significance of Salt and Hash Rounds
 
 Explained the concept of salts and salt rounds in B-Crypt to further secure passwords by adding randomness and 
 complexity, making it computationally harder for attackers to crack passwords through brute force methods.
-Refreshing Tokens for Session Management
 
-Discussed strategies for managing user sessions securely through JWTs, including using a refresh token system to allow users to remain logged in securely without compromising system security.
+Refreshing Tokens for Session Management
+-->Discussed strategies for managing user sessions securely through JWTs, including using a refresh token system to allow users to remain 
+logged in securely without compromising system security.
+
 Security Through Blacklisting Tokens
 
-Introduced a method to immediately invalidate tokens by blacklisting, which enhances security by offering a way to forcefully log out users or prevent misuse of tokens that may have been compromised.
-This lecture provided comprehensive insights into enhancing the security of web applications through effective authentication strategies, notably through the use of B-Crypt for hashing and JWT for managing user sessions.
+Introduced a method to immediately invalidate tokens by blacklisting, which enhances security by offering a way to forcefully log out 
+users or prevent misuse of tokens that may have been compromised.
+This lecture provided comprehensive insights into enhancing the security of web applications through effective authentication strategies,
+ notably through the use of B-Crypt for hashing and JWT for managing user sessions.
