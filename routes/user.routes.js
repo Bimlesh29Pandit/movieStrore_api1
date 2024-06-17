@@ -55,11 +55,21 @@ userRouter.post("/login", async (req, res) => {
         }
 
         if (result) {
-          const token = jwt.sign(
+          const accesstoken = jwt.sign(
             { email: user.email, password: user.passoword, role: user.role },
-            "self"
+            "self",
+            { expiresIn: "15s" }
           );
-          res.status(200).send({ msg: " Login Successfull", token: token });
+          const refressToken = jwt.sign(
+            { email: user.email, password: user.passoword, role: user.role },
+            "selfless",
+            { expiresIn: "1d" }
+          );
+          res.status(200).send({
+            msg: " Login Successfull",
+            accesstoken: accesstoken,
+            refressToken: refressToken,
+          });
         } else {
           res.status(200).send({ msg: "wrong Credentials try again!!!" });
         }
@@ -80,4 +90,22 @@ userRouter.get("/logout", (req, res) => {
   res.status(200).send("logout successful");
 });
 
+userRouter.post("/token", (req, res) => {
+  const refressToken = req.body.token;
+  if (!refressToken) {
+    return res.send("You are not authenticated");
+  }
+  jwt.verify(refressToken, "selfless", (error, decode) => {
+    if (error) {
+      return res.send("Token is not valid");
+    } else {
+      let accesstoken = jwt.sign(
+        { email: decode.email, username: decode.username, role: decode.role },
+        "self",
+        { expiresIn: "1m" }
+      );
+      res.send({ accessToken: accesstoken });
+    }
+  });
+});
 module.exports = userRouter;

@@ -21,6 +21,31 @@
 --> solution is--> we should have which create a new token at every login.
 ==> jwt (json web token)
 
+encryption vs hashing
+encryption is reversible and hashing is irreversiable.
+encryption is used to secure data and hashing is used to secure passwords.
+
+
+Access Token --> short lived token (1 hr or 2 hr)
+ Refresh Token--> long lived token (1 month and 2 week)
+ ==>we want to keep the user logged for good experience after every 5 min loggout
+ ==> we have to secure our website we will change token (access our private data);
+ ==> system will automatically generate a new access token for user why?
+ ==> user doesn't get logout , he stay logged in.
+
+ post https://localhost:3000/data
+ headers : access token
+ response(403) ==> jwt expired;
+
+ if(res(403)){
+    https://localhost:3000/token
+    response==> new access token
+ }
+ and again this api will be called
+  post https://localhost:3000/data
+ headers : new access token
+
+
 
 Overview
 The lecture focused on authentication and authorization fundamentals in backend development, introducing concepts
