@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const blacklisted = require("../blacklisted");
 
 const auth = (req, res, next) => {
   // if (req.query.token == 123) {
@@ -10,7 +11,12 @@ const auth = (req, res, next) => {
 
   // key --> Authorization  && value --> bearer {token}--> this how we pass the value in headers
   var token = req.headers.authorization.split(" ")[1];
-  console.log(token);
+  // console.log(token);
+  if (token) {
+    if (blacklisted.includes(token)) {
+      return res.send("You are balcklisted please login again");
+    }
+  }
   jwt.verify(token, "self", (error, decode) => {
     if (error) {
       console.log(error);

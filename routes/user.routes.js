@@ -2,6 +2,7 @@ const express = require("express");
 const UserModel = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const blacklisted = require("../blacklisted");
 
 const userRouter = express.Router();
 
@@ -71,6 +72,12 @@ userRouter.post("/login", async (req, res) => {
       .status(404)
       .send(`something went wrong Unable to login due to error ${error}`);
   }
+});
+
+userRouter.get("/logout", (req, res) => {
+  let token = req.headers.authorization.split(" ")[1];
+  blacklisted.push(token);
+  res.status(200).send("logout successful");
 });
 
 module.exports = userRouter;
